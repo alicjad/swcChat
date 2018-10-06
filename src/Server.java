@@ -17,7 +17,7 @@ public class Server {
             clientSockets.add(cs);
             String request = cs.getRequest();
             System.out.println(request);
-            //cs.writeResponse();
+            cs.writeResponse(socket);
             // cs.getUserName()
             // cs.hasMessage()
             // cs.getMessage()

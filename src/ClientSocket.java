@@ -20,21 +20,23 @@ public class ClientSocket {
                 messageIn = messageIn + (char)inputStreamReader.read();
             }
         }catch (IOException e){
-
+            return "ERROR";
         }
         return messageIn;
     }
 
-    public void writeResponse(){
-        try {
-            DataOutputStream dataOutputStream = new DataOutputStream(this.clientSocket.getOutputStream());
+    public void writeResponse(Socket socket){
+        try{
+            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
             Scanner scanner = new Scanner(System.in);
-            String messageOut = scanner.next();
-            while (scanner.hasNext()) {
-                dataOutputStream.writeBytes(messageOut);
-            }
+            String outgoingMessage = scanner.nextLine();
+            dataOutputStream.writeBytes(outgoingMessage);
             dataOutputStream.flush();
-            System.out.println(messageOut);
+            System.out.println("insert any number to continue");
+            while (!scanner.hasNextByte()){
+                scanner.next();
+            }
+            System.out.println("success");
         }catch (IOException e){
 
         }
