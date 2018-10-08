@@ -36,7 +36,7 @@ public class ClientSocket {
             while (!scanner.hasNextByte()){
                 scanner.next();
             }
-            System.out.println("success");
+            System.out.println("message sent");
         }catch (IOException e){
 
         }

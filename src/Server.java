@@ -5,19 +5,24 @@ import java.util.ArrayList;
 
 public class Server {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         ServerSocket serverSocket = new ServerSocket(80);
-        // lista client socketow
         ArrayList<ClientSocket>clientSockets = new ArrayList<>();
         while (true) {
             Socket socket = serverSocket.accept();
             System.out.println("Someone connected");
             ClientSocket cs = new ClientSocket(socket);
+            System.out.println("new client socket created");
             clientSockets.add(cs);
+            System.out.println("client socket added to the list");
+            //int clientsCurrentlyConnected = clientSockets.size();
             String request = cs.getRequest();
             System.out.println(request);
-            cs.writeResponse(socket);
+            //
+
+            //System.out.println("write your response: ");
+            //cs.writeResponse(socket);
             // cs.getUserName()
             // cs.hasMessage()
             // cs.getMessage()
